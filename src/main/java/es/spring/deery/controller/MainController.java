@@ -41,12 +41,6 @@ public class MainController {
 
     @GetMapping("/")
     public String index(Model model) {
-        return "index";
-    }
-
-    @GetMapping("/xd")
-    public String displayUsers(Model model) {
-        model.addAttribute("users", userRepository.findAll());
-        return "input";
+        return "redirect:artworks";
     }
 }

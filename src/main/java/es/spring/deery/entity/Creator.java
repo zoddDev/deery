@@ -6,19 +6,19 @@ import java.util.Objects;
 
 @Entity
 public class Creator {
-    private Integer userId;
-    private Collection<Artwork> artworksByUserId;
-    private User userbdByUserId;
-    private Collection<OC> originalCharactersByUserId;
+    private Integer userbdId;
+    private Collection<Artwork> artworksByUserbdId;
+    private User userbdByUserbdId;
+    private Collection<OC> originalCharactersByUserbdId;
 
     @Id
-    @Column(name = "USER_ID")
-    public Integer getUserId() {
-        return userId;
+    @Column(name = "USERBD_ID")
+    public Integer getUserbdId() {
+        return userbdId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUserbdId(Integer userbdId) {
+        this.userbdId = userbdId;
     }
 
     @Override
@@ -26,39 +26,39 @@ public class Creator {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Creator creator = (Creator) o;
-        return Objects.equals(userId, creator.userId);
+        return Objects.equals(userbdId, creator.userbdId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId);
+        return Objects.hash(userbdId);
     }
 
-    @OneToMany(mappedBy = "creatorByCreatorUserId")
-    public Collection<Artwork> getArtworksByUserId() {
-        return artworksByUserId;
+    @OneToMany(mappedBy = "creatorByCreatorId")
+    public Collection<Artwork> getArtworksByUserbdId() {
+        return artworksByUserbdId;
     }
 
-    public void setArtworksByUserId(Collection<Artwork> artworksByUserId) {
-        this.artworksByUserId = artworksByUserId;
+    public void setArtworksByUserbdId(Collection<Artwork> artworksByUserbdId) {
+        this.artworksByUserbdId = artworksByUserbdId;
     }
 
     @OneToOne
-    @JoinColumn(name = "USER_ID", referencedColumnName = "ID", nullable = false)
-    public User getUserbdByUserId() {
-        return userbdByUserId;
+    @JoinColumn(name = "USERBD_ID", referencedColumnName = "ID", nullable = false)
+    public User getUserbdByUserbdId() {
+        return userbdByUserbdId;
     }
 
-    public void setUserbdByUserId(User userbdByUserId) {
-        this.userbdByUserId = userbdByUserId;
+    public void setUserbdByUserbdId(User userbdByUserbdId) {
+        this.userbdByUserbdId = userbdByUserbdId;
     }
 
-    @OneToMany(mappedBy = "creatorByCreatorUserId")
-    public Collection<OC> getOriginalCharactersByUserId() {
-        return originalCharactersByUserId;
+    @OneToMany(mappedBy = "creatorByCreatorId")
+    public Collection<OC> getOriginalCharactersByUserbdId() {
+        return originalCharactersByUserbdId;
     }
 
-    public void setOriginalCharactersByUserId(Collection<OC> originalCharactersByUserId) {
-        this.originalCharactersByUserId = originalCharactersByUserId;
+    public void setOriginalCharactersByUserbdId(Collection<OC> originalCharactersByUserbdId) {
+        this.originalCharactersByUserbdId = originalCharactersByUserbdId;
     }
 }

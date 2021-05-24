@@ -1,9 +1,9 @@
 package es.spring.deery.entity;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.id.IncrementGenerator;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Objects;
@@ -14,8 +14,10 @@ public class Artwork {
     private byte[] img;
     private String title;
     private String description;
-    private Creator creatorByCreatorUserId;
+    private Date date;
+    private Creator creatorByCreatorId;
     private Collection<ArtworkOcs> artworkOcsById;
+    private Collection<Comment> commentsById;
 
     @Id
     @GenericGenerator(name="kaugen" , strategy="increment")
@@ -59,29 +61,39 @@ public class Artwork {
         this.description = description;
     }
 
+    @Basic
+    @Column(name = "DATE")
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Artwork artwork = (Artwork) o;
-        return Objects.equals(id, artwork.id) && Arrays.equals(img, artwork.img) && Objects.equals(title, artwork.title) && Objects.equals(description, artwork.description);
+        return Objects.equals(id, artwork.id) && Arrays.equals(img, artwork.img) && Objects.equals(title, artwork.title) && Objects.equals(description, artwork.description) && Objects.equals(date, artwork.date);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(id, title, description);
+        int result = Objects.hash(id, title, description, date);
         result = 31 * result + Arrays.hashCode(img);
         return result;
     }
 
     @ManyToOne
-    @JoinColumn(name = "CREATOR_USER_ID", referencedColumnName = "USER_ID", nullable = false)
-    public Creator getCreatorByCreatorUserId() {
-        return creatorByCreatorUserId;
+    @JoinColumn(name = "CREATOR_ID", referencedColumnName = "USERBD_ID", nullable = false)
+    public Creator getCreatorByCreatorId() {
+        return creatorByCreatorId;
     }
 
-    public void setCreatorByCreatorUserId(Creator creatorByCreatorUserId) {
-        this.creatorByCreatorUserId = creatorByCreatorUserId;
+    public void setCreatorByCreatorId(Creator creatorByCreatorId) {
+        this.creatorByCreatorId = creatorByCreatorId;
     }
 
     @OneToMany(mappedBy = "artworkByArtworkId")
@@ -91,5 +103,14 @@ public class Artwork {
 
     public void setArtworkOcsById(Collection<ArtworkOcs> artworkOcsById) {
         this.artworkOcsById = artworkOcsById;
+    }
+
+    @OneToMany(mappedBy = "artworkByArtworkId")
+    public Collection<Comment> getCommentsById() {
+        return commentsById;
+    }
+
+    public void setCommentsById(Collection<Comment> commentsById) {
+        this.commentsById = commentsById;
     }
 }

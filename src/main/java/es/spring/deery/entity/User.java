@@ -1,6 +1,9 @@
 package es.spring.deery.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -10,9 +13,12 @@ public class User {
     private String email;
     private String username;
     private String password;
+    private Collection<Comment> commentsById;
     private Creator creatorById;
 
     @Id
+    @GenericGenerator(name="kaugen" , strategy="increment")
+    @GeneratedValue(generator="kaugen")
     @Column(name = "ID")
     public Integer getId() {
         return id;
@@ -65,7 +71,16 @@ public class User {
         return Objects.hash(id, email, username, password);
     }
 
-    @OneToOne(mappedBy = "userbdByUserId")
+    @OneToMany(mappedBy = "userbdByUserbdId")
+    public Collection<Comment> getCommentsById() {
+        return commentsById;
+    }
+
+    public void setCommentsById(Collection<Comment> commentsById) {
+        this.commentsById = commentsById;
+    }
+
+    @OneToOne(mappedBy = "userbdByUserbdId")
     public Creator getCreatorById() {
         return creatorById;
     }

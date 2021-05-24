@@ -6,17 +6,17 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class ArtworkOcsPK implements Serializable {
-    private Integer originalcharacterId;
+    private Integer originalCharacterId;
     private Integer artworkId;
 
-    @Column(name = "ORIGINALCHARACTER_ID")
+    @Column(name = "ORIGINAL_CHARACTER_ID")
     @Id
-    public Integer getOriginalcharacterId() {
-        return originalcharacterId;
+    public Integer getOriginalCharacterId() {
+        return originalCharacterId;
     }
 
-    public void setOriginalcharacterId(Integer originalcharacterId) {
-        this.originalcharacterId = originalcharacterId;
+    public void setOriginalCharacterId(Integer originalCharacterId) {
+        this.originalCharacterId = originalCharacterId;
     }
 
     @Column(name = "ARTWORK_ID")
@@ -34,11 +34,11 @@ public class ArtworkOcsPK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ArtworkOcsPK that = (ArtworkOcsPK) o;
-        return Objects.equals(originalcharacterId, that.originalcharacterId) && Objects.equals(artworkId, that.artworkId);
+        return Objects.equals(originalCharacterId, that.originalCharacterId) && Objects.equals(artworkId, that.artworkId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(originalcharacterId, artworkId);
+        return Objects.hash(originalCharacterId, artworkId);
     }
 }

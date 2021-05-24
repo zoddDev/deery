@@ -1,6 +1,7 @@
 package es.spring.deery.entity;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Objects;
@@ -12,8 +13,10 @@ public class OC {
     private byte[] img;
     private String name;
     private String description;
+    private Date date;
     private Collection<ArtworkOcs> artworkOcsById;
-    private Creator creatorByCreatorUserId;
+    private Collection<Comment> commentsById;
+    private Creator creatorByCreatorId;
 
     @Id
     @Column(name = "ID")
@@ -55,22 +58,32 @@ public class OC {
         this.description = description;
     }
 
+    @Basic
+    @Column(name = "DATE")
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OC oc = (OC) o;
-        return Objects.equals(id, oc.id) && Arrays.equals(img, oc.img) && Objects.equals(name, oc.name) && Objects.equals(description, oc.description);
+        return Objects.equals(id, oc.id) && Arrays.equals(img, oc.img) && Objects.equals(name, oc.name) && Objects.equals(description, oc.description) && Objects.equals(date, oc.date);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(id, name, description);
+        int result = Objects.hash(id, name, description, date);
         result = 31 * result + Arrays.hashCode(img);
         return result;
     }
 
-    @OneToMany(mappedBy = "originalCharacterByOriginalcharacterId")
+    @OneToMany(mappedBy = "originalCharacterByOriginalCharacterId")
     public Collection<ArtworkOcs> getArtworkOcsById() {
         return artworkOcsById;
     }
@@ -79,13 +92,22 @@ public class OC {
         this.artworkOcsById = artworkOcsById;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "CREATOR_USER_ID", referencedColumnName = "USER_ID", nullable = false)
-    public Creator getCreatorByCreatorUserId() {
-        return creatorByCreatorUserId;
+    @OneToMany(mappedBy = "originalCharacterByOriginalCharacterId")
+    public Collection<Comment> getCommentsById() {
+        return commentsById;
     }
 
-    public void setCreatorByCreatorUserId(Creator creatorByCreatorUserId) {
-        this.creatorByCreatorUserId = creatorByCreatorUserId;
+    public void setCommentsById(Collection<Comment> commentsById) {
+        this.commentsById = commentsById;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "CREATOR_ID", referencedColumnName = "USERBD_ID", nullable = false)
+    public Creator getCreatorByCreatorId() {
+        return creatorByCreatorId;
+    }
+
+    public void setCreatorByCreatorId(Creator creatorByCreatorId) {
+        this.creatorByCreatorId = creatorByCreatorId;
     }
 }

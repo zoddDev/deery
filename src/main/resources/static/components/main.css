@@ -63,3 +63,25 @@ a.link-active {
   background-image: linear-gradient(90deg, #b2edff 0%, #e9dbff 25%, #c1ffe1 50%, #b2edff 75%, #e9dbff 100%);
   animation: gradientMotion 20s infinite linear;
 }
+
+undecorated a:active, a:focus {
+  outline: 0;
+  border: none;
+  -moz-outline-style: none;
+}
+
+.bg-nord {
+  background-color: #2E3440;
+  background-image: url("../images/wallpaper-nord.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.bg-nord-blurred {
+  background-color: #2E3440;
+  background-image: url("../images/wallpaper-nord-blurred.jpg");
+  background-repeat: repeat;
+  background-size: 100%;
+  background-attachment: fixed;
+  background-position: center;
+}

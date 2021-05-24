@@ -18,18 +18,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
-    <link rel="icon" href="https://victorpastor.com/wp-content/uploads/2020/11/logo.png">
+    <title>Deery</title>
+    <link rel="icon" href="images/paint-brush-icon.png">
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"--%>
+<%--          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">--%>
     <script src="https://kit.fontawesome.com/3964857799.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="components/main.css">
+    <link rel="stylesheet" href="components/bootstrap.css">
 </head>
-<body class="bg-gradient-animated">
+<body class="bg-nord-blurred">
 <%
     request.setAttribute("currentpage", "artworks");
 
@@ -42,7 +43,7 @@
     BufferedImage img = null;
 
     if (edit) {
-        artworkOCs = a.getArtworkOcsById().stream().map(ArtworkOcs::getOriginalCharacterByOriginalcharacterId).collect(Collectors.toList());
+        artworkOCs = a.getArtworkOcsById().stream().map(ArtworkOcs::getOriginalCharacterByOriginalCharacterId).collect(Collectors.toList());
 
         // Compare by OC's name
         Collections.sort(artworkOCs, new Comparator<OC>() {
@@ -57,17 +58,19 @@
 %>
 <jsp:include page="../header.jsp"></jsp:include>
 
-<div class="container bg-light p-2 my-5 shadow">
+<div class="container p-2 my-5">
     <form action="artworks-save" method="POST" enctype="multipart/form-data">
-        <div class="d-flex justify-content-center py-2">
+        <div class="d-flex justify-content-center py-2 bg-light shadow-lg">
             <h1><%= edit ? "Editing: " + a.getTitle() : "New Artwork"%></h1>
         </div>
         <div class="row mt-5 justify-content-center px-3">
             <div class=<%= !edit || ((double) img.getHeight() / (double) img.getWidth() >= 0.8) ? "col-md-4" : "row" %>>
-                <img src="data:image/jpg;base64, <%= edit ? Base64.getEncoder().encodeToString(a.getImg()) : "src/main/resources/static/images/Interrogation.png" %>" class="img-fluid mx-auto d-block post-display-horizontal" id="img">
+                <label class="bg-light p-2 shadow-lg" style="cursor: pointer !important;" for="imgInp">
+                    <img src="<%= edit ? "data:image/jpg;base64, " + Base64.getEncoder().encodeToString(a.getImg()) : "images/upload.svg" %>" class="img-fluid mx-auto d-block post-display-horizontal" id="img">
+                </label>
             </div>
             <div class="d-flex p-2 justify-content-center <%= !edit || ((double) img.getHeight() / (double) img.getWidth() >= 0.8) ? "col-md" : "my-4" %>">
-                <div class="w-75">
+                <div class="p-4 w-75 bg-light shadow-lg">
                     <input type="text" hidden class="form-control" name="id" value="<%= edit ? a.getId() : "" %>">
                     <label class="form-label">Title *</label>
                     <input type="text" class="form-control" name="title" value="<%= edit ? a.getTitle() : "" %>" required><br/>
@@ -83,12 +86,12 @@
                     <%
                         if (edit) {
                         %>
-                            <a href="artworks-create" <%= edit ? "data-bs-toggle=\"modal\" data-bs-target=\"#openEditDialog\"" : "" %> class="btn btn-success w-50 mx-3"><%= edit ? "Confirm changes" : "Create" %></a>
-                            <a href="artworks-create" class="btn btn-danger w-25" data-bs-toggle="modal" data-bs-target="#openDeleteDialog">Delete</a>
+                            <a href="artworks-create" <%= edit ? "data-bs-toggle=\"modal\" data-bs-target=\"#openEditDialog\"" : "" %> class="btn btn-success text-light w-50 mx-3"><%= edit ? "Confirm changes" : "Create" %></a>
+                            <a href="artworks-create" class="btn btn-danger text-light w-25" data-bs-toggle="modal" data-bs-target="#openDeleteDialog">Delete</a>
                         <%
                         } else {
                         %>
-                            <input type="submit" class="btn btn-success" value="Create">
+                            <input type="submit" class="btn btn-success text-light" value="Create">
                         <%
                         }
                     %>
@@ -106,7 +109,8 @@
                                 </div>
 
                                 <div class="modal-body">
-                                        <%
+                                    <input type="checkbox" hidden name="ocs-in-artwork"/>
+                                    <%
                                             for (OC oc : ocs) {
                                             %>
                                             <div class="form-check">
@@ -139,7 +143,7 @@
                                         <p class="lead my-5">Proceed with changes?</p>
                                     </div>
                                     <div class="center-block text-center">
-                                        <input type="submit" class="btn btn-success" value="Apply changes">
+                                        <input type="submit" class="btn btn-success text-light" value="Apply changes">
                                         <a href="" class="mx-3" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
                                     </div>
                                 </div>
@@ -164,7 +168,7 @@
                                         <p class="lead my-5">Proceed with deletion?</p>
                                     </div>
                                     <div class="center-block text-center">
-                                        <a href="artworks-delete?id=<%= a.getId() %>" class="btn btn-danger">Yes, I want to delete my artwork</a>
+                                        <a href="artworks-delete?id=<%= edit ? a.getId() : null %>" class="btn btn-danger text-light">Yes, I want to delete my artwork</a>
                                         <a href="" class="mx-3" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
                                     </div>
                                 </div>

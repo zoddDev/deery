@@ -7,19 +7,19 @@ import java.util.Objects;
 @Table(name = "ARTWORK_OCS", schema = "DEERY", catalog = "")
 @IdClass(ArtworkOcsPK.class)
 public class ArtworkOcs {
-    private Integer originalcharacterId;
+    private Integer originalCharacterId;
     private Integer artworkId;
-    private OC originalCharacterByOriginalcharacterId;
+    private OC originalCharacterByOriginalCharacterId;
     private Artwork artworkByArtworkId;
 
     @Id
-    @Column(name = "ORIGINALCHARACTER_ID", insertable = false, updatable = false)
-    public Integer getOriginalcharacterId() {
-        return originalcharacterId;
+    @Column(name = "ORIGINAL_CHARACTER_ID", insertable = false, updatable = false)
+    public Integer getOriginalCharacterId() {
+        return originalCharacterId;
     }
 
-    public void setOriginalcharacterId(Integer originalcharacterId) {
-        this.originalcharacterId = originalcharacterId;
+    public void setOriginalCharacterId(Integer originalCharacterId) {
+        this.originalCharacterId = originalCharacterId;
     }
 
     @Id
@@ -37,22 +37,22 @@ public class ArtworkOcs {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ArtworkOcs that = (ArtworkOcs) o;
-        return Objects.equals(originalcharacterId, that.originalcharacterId) && Objects.equals(artworkId, that.artworkId);
+        return Objects.equals(originalCharacterId, that.originalCharacterId) && Objects.equals(artworkId, that.artworkId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(originalcharacterId, artworkId);
+        return Objects.hash(originalCharacterId, artworkId);
     }
 
     @ManyToOne
-    @JoinColumn(name = "ORIGINALCHARACTER_ID", referencedColumnName = "ID", nullable = false, insertable = false, updatable = false)
-    public OC getOriginalCharacterByOriginalcharacterId() {
-        return originalCharacterByOriginalcharacterId;
+    @JoinColumn(name = "ORIGINAL_CHARACTER_ID", referencedColumnName = "ID", nullable = false, insertable = false, updatable = false)
+    public OC getOriginalCharacterByOriginalCharacterId() {
+        return originalCharacterByOriginalCharacterId;
     }
 
-    public void setOriginalCharacterByOriginalcharacterId(OC originalCharacterByOriginalcharacterId) {
-        this.originalCharacterByOriginalcharacterId = originalCharacterByOriginalcharacterId;
+    public void setOriginalCharacterByOriginalCharacterId(OC originalCharacterByOriginalCharacterId) {
+        this.originalCharacterByOriginalCharacterId = originalCharacterByOriginalCharacterId;
     }
 
     @ManyToOne

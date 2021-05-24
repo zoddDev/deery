@@ -6,12 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="border-bottom">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #2E3440 !important;">
+<div class="">
+<%--    #2E3440--%>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg">
         <div class="container-fluid">
             <div class="d-flex justify-content-start ms-2">
-                <img width="45" height="45"
-                     src="https://icon-library.com/images/paint-brush-icon-png/paint-brush-icon-png-13.jpg" style="-webkit-filter: invert(1); filter: brightness(100);" />
+                <img width="45" height="45" src="images/paint-brush-icon.png"/>
                 <a class="navbar-brand ms-3" href="/">DEERY</a>
             </div>
             <div class="d-flex justify-content-end">

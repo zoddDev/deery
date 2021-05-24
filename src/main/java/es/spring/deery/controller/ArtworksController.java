@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -74,33 +75,37 @@ public class ArtworksController {
                                @RequestParam("file") MultipartFile file,
                                @RequestParam("title") String title,
                                @RequestParam("description") String description,
-                               @RequestParam("ocs-in-artwork") List<String> ocsInArtwork)
+                               @RequestParam(value = "ocs-in-artwork", required = false) List<String> ocsInArtwork)
     {
         boolean edit = id != null && !id.isEmpty();
         Artwork a = edit ? artworkRepository.findById(Integer.parseInt(id)).get() : new Artwork();
         a.setTitle(title);
         a.setDescription(description);
-        a.setCreatorByCreatorUserId(creatorRepository.findById(1).get());
+        a.setCreatorByCreatorId(creatorRepository.findById(1).get());
 
-        if (edit) {
+        if (!edit)
+            a.setDate(new Date(new java.util.Date().getTime()));
+
+        if (edit && (ocsInArtwork != null && !ocsInArtwork.isEmpty())) {
             for (ArtworkOcs artworkOcs : a.getArtworkOcsById()) {
                 artworkOCsRepository.delete(artworkOcs);
             }
         }
 
         a.setArtworkOcsById(new LinkedList<>());
+        if (ocsInArtwork != null && !ocsInArtwork.isEmpty()) {
+            for (String ocId : ocsInArtwork) {
+                ArtworkOcs artworkOcs = new ArtworkOcs();
+                artworkOcs.setArtworkByArtworkId(a);
+                artworkOcs.setArtworkId(a.getId());
+                artworkOcs.setOriginalCharacterId(Integer.parseInt(ocId));
 
-        for (String ocId : ocsInArtwork) {
-            ArtworkOcs artworkOcs = new ArtworkOcs();
-            artworkOcs.setArtworkByArtworkId(a);
-            artworkOcs.setArtworkId(a.getId());
-            artworkOcs.setOriginalcharacterId(Integer.parseInt(ocId));
+                OC oc = ocRepository.findById(Integer.parseInt(ocId)).get();
+                artworkOcs.setOriginalCharacterByOriginalCharacterId(oc);
 
-            OC oc = ocRepository.findById(Integer.parseInt(ocId)).get();
-            artworkOcs.setOriginalCharacterByOriginalcharacterId(oc);
-
-            artworkOCsRepository.save(artworkOcs);
-            a.getArtworkOcsById().add(artworkOcs);
+                artworkOCsRepository.save(artworkOcs);
+                a.getArtworkOcsById().add(artworkOcs);
+            }
         }
 
         if (!edit)

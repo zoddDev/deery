@@ -8,8 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
-    <link rel="icon" href="https://victorpastor.com/wp-content/uploads/2020/11/logo.png">
+    <title>Deery</title>
+    <link rel="icon" href="images/paint-brush-icon.png">
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
