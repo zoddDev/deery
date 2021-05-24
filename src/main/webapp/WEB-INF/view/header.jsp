@@ -10,10 +10,11 @@
 <%--    #2E3440--%>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg">
         <div class="container-fluid">
-            <div class="d-flex justify-content-start ms-2">
-                <img width="45" height="45" src="images/paint-brush-icon.png"/>
+            <div class="d-flex justify-content-start ms-2" onclick="location.href='/'">
+                <img width="45" height="45" src="images/paint-brush-icon.png" style="cursor: pointer !important;"/>
                 <a class="navbar-brand ms-3" href="/">DEERY</a>
             </div>
+
             <div class="d-flex justify-content-end">
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mb-2 mb-lg-0">
