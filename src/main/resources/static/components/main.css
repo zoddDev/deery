@@ -80,8 +80,8 @@ undecorated a:active, a:focus {
 .bg-nord-blurred {
   background-color: #2E3440;
   background-image: url("../images/wallpaper-nord-blurred.jpg");
-  background-repeat: repeat;
+  background-repeat: no-repeat;
   background-size: 100%;
   background-attachment: fixed;
-  background-position: center;
+  /*background-position: center;*/
 }

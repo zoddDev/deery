@@ -32,10 +32,10 @@
 </head>
 <body class="bg-nord-blurred">
 <%
-    request.setAttribute("currentpage", "artworks");
-
     Artwork a = (Artwork) request.getAttribute("artwork");
     boolean edit = a != null;
+
+    request.setAttribute("currentpage", edit ? "artworks" : "new");
 
     List<OC> ocs = (List<OC>) request.getAttribute("ocs");
 
@@ -58,19 +58,24 @@
 %>
 <jsp:include page="../header.jsp"></jsp:include>
 
-<div class="container p-2 my-5">
+<div class="container my-5 text-dark">
     <form action="artworks-save" method="POST" enctype="multipart/form-data">
-        <div class="d-flex justify-content-center py-2 bg-light shadow-lg">
-            <h1><%= edit ? "Editing: " + a.getTitle() : "New Artwork"%></h1>
-        </div>
-        <div class="row mt-5 justify-content-center px-3">
-            <div class=<%= !edit || ((double) img.getHeight() / (double) img.getWidth() >= 0.8) ? "col-md-4" : "row" %>>
-                <label class="bg-light p-2 shadow-lg" style="cursor: pointer !important;" for="imgInp">
+        <div class="row mt-5 justify-content-center px-2 g-7 gy-5">
+
+            <div class="d-flex justify-content-center py-2 bg-light shadow-lg my-4">
+                <h1 class="fw-bold"><%= edit ? a.getTitle() : "New Artwork"%></h1>
+            </div>
+
+            <!--IMG-->
+            <div class="col-md-offset-2 <%= !edit || ((double) img.getHeight() / (double) img.getWidth() >= 0.8) ? "col-sm-4" : "col-sm-8" %>">
+                <label class="bg-light p-2 mt-2 shadow-lg" style="cursor: pointer !important;" for="imgInp">
                     <img src="<%= edit ? "data:image/jpg;base64, " + Base64.getEncoder().encodeToString(a.getImg()) : "images/upload.svg" %>" class="img-fluid mx-auto d-block post-display-horizontal" id="img">
                 </label>
             </div>
-            <div class="d-flex p-2 justify-content-center <%= !edit || ((double) img.getHeight() / (double) img.getWidth() >= 0.8) ? "col-md" : "my-4" %>">
-                <div class="p-4 w-75 bg-light shadow-lg">
+
+            <!--FORM FIELDS-->
+            <div class="col-sm-8 justify-content-center">
+                <div class="mt-2 p-4 w-100 bg-light shadow-lg">
                     <input type="text" hidden class="form-control" name="id" value="<%= edit ? a.getId() : "" %>">
                     <label class="form-label">Title *</label>
                     <input type="text" class="form-control" name="title" value="<%= edit ? a.getTitle() : "" %>" required><br/>
@@ -86,7 +91,7 @@
                     <%
                         if (edit) {
                         %>
-                            <a href="artworks-create" <%= edit ? "data-bs-toggle=\"modal\" data-bs-target=\"#openEditDialog\"" : "" %> class="btn btn-success text-light w-50 mx-3"><%= edit ? "Confirm changes" : "Create" %></a>
+                            <a href="artworks-create" <%= edit ? "data-bs-toggle=\"modal\" data-bs-target=\"#openEditDialog\"" : "" %> class="btn btn-success text-light w-50 mx-3"><%= edit ? "Confirm" : "Create" %></a>
                             <a href="artworks-create" class="btn btn-danger text-light w-25" data-bs-toggle="modal" data-bs-target="#openDeleteDialog">Delete</a>
                         <%
                         } else {
@@ -103,7 +108,7 @@
                             <div class="modal-content">
 
                                 <div class="modal-header">
-                                    <h3> Characters ✨</h3>
+                                    <h3> Characters ✨ </h3>
 
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
@@ -111,17 +116,17 @@
                                 <div class="modal-body">
                                     <input type="checkbox" hidden name="ocs-in-artwork"/>
                                     <%
-                                            for (OC oc : ocs) {
-                                            %>
-                                            <div class="form-check">
-                                                <input type="checkbox" class="form-check-input mt-2" name="ocs-in-artwork" value="<%= oc.getId() %>" <%= edit && artworkOCs.contains(oc) ? "checked" : "" %> />
-                                                <label class="form-check-label lead">
-                                                    <%= oc.getName() %>
-                                                </label>
-                                            </div>
-                                             <%
-                                            }
+                                        for (OC oc : ocs) {
                                         %>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input mt-2" name="ocs-in-artwork" value="<%= oc.getId() %>" <%= edit && artworkOCs.contains(oc) ? "checked" : "" %> />
+                                            <label class="form-check-label lead">
+                                                <%= oc.getName() %>
+                                            </label>
+                                        </div>
+                                         <%
+                                        }
+                                    %>
                                 </div>
                             </div>
                         </div>

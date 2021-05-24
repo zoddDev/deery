@@ -18,7 +18,7 @@
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         <li class="nav-item me-4">
-                            <a class="nav-link <%= request.getAttribute("currentpage") != null && request.getAttribute("currentpage").equals("index")  ? "link-active" : ""  %>" href="/">Start</a>
+                            <a class="nav-link <%= request.getAttribute("currentpage") != null && request.getAttribute("currentpage").equals("new")  ? "link-active" : ""  %>" href="/artworks-create">New Artwork</a>
                         </li>
                         <li class="nav-item me-4">
                             <a class="nav-link <%= request.getAttribute("currentpage") != null && request.getAttribute("currentpage").equals("artworks")  ? "link-active" : ""  %>" href="/artworks">Artworks</a>

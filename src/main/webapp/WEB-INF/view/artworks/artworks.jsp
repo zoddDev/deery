@@ -27,12 +27,11 @@
     request.setAttribute("currentpage", "artworks");
 
     List<Artwork> artworks = (List<Artwork>) request.getAttribute("artworks");
-
     // Compare by date (most recent first)
     Collections.sort(artworks, new Comparator<Artwork>() {
         @Override
         public int compare(Artwork o1, Artwork o2) {
-            return -o1.getDate().compareTo(o2.getDate());
+            return Integer.compare(o2.getId(), o1.getId());
         }
     });
 %>
@@ -40,7 +39,7 @@
 
 <div class="container">
     <div class="row m-5 justify-content-center text-center">
-        <h1 class="text-lg-center text-light" style="font-size: 5rem">DEERY'S ARTWORKS</h1>
+        <h1 class="text-lg-center text-light fw-bold" style="font-size: 300%;">DEERY'S ARTWORKS</h1>
     </div>
 
     <div class="row mt-5">
