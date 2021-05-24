@@ -119,7 +119,7 @@
                                         for (OC oc : ocs) {
                                         %>
                                         <div class="form-check">
-                                            <input type="checkbox" class="form-check-input mt-2" name="ocs-in-artwork" value="<%= oc.getId() %>" <%= edit && artworkOCs.contains(oc) ? "checked" : "" %> />
+                                            <input type="checkbox" class="form-check-input mt-2 bg-dark border-dark" name="ocs-in-artwork" value="<%= oc.getId() %>" <%= edit && artworkOCs.contains(oc) ? "checked" : "" %> />
                                             <label class="form-check-label lead">
                                                 <%= oc.getName() %>
                                             </label>
