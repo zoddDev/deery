@@ -1,0 +1,65 @@
+/*      COLORES  - azul */
+
+:root {
+  --blue: #88c0d0;
+}
+
+.border-blue{
+  border-color: var(--blue) !important;
+}
+
+a.link-active {
+  color: var(--blue) !important;
+  text-decoration: none;
+}
+
+.textoColorAzul{
+  color: var(--blue);
+}
+
+.botonColorAzul{
+  background-color: var(--blue) !important;
+  border-color: var(--blue) !important;
+}
+
+.botonColorAzul:hover{
+  background-color: var(--blue) !important;
+  border-color: var(--blue) !important;
+}
+
+.thumb-post {
+  object-fit: cover !important;
+  width: 400px !important;
+  object-position: center !important;
+  height: 400px !important;
+
+  transition-duration: 0.25s;
+}
+
+.post-display-vertical {
+  object-fit: cover !important;
+  object-position: center !important;
+  width: 800px;
+
+  transition-duration: 0.25s;
+}
+
+.post-display-horizontal {
+  object-fit: cover !important;
+  object-position: center !important;
+  width: 800px;
+
+  transition-duration: 0.25s;
+}
+
+
+.thumb-post:hover {
+  opacity: 0.9;
+}
+
+.bg-gradient-animated {
+  background-size: 400% auto;
+  background-position: 100% 50%;
+  background-image: linear-gradient(90deg, #b2edff 0%, #e9dbff 25%, #c1ffe1 50%, #b2edff 75%, #e9dbff 100%);
+  animation: gradientMotion 20s infinite linear;
+}
