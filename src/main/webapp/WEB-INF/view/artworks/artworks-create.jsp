@@ -60,9 +60,9 @@
 
 <div class="container my-5 text-dark">
     <form action="artworks-save" method="POST" enctype="multipart/form-data">
-        <div class="row mt-5 justify-content-center px-2 g-7 gy-5">
+        <div class="row mt-5 justify-content-center px-2 g-7 gy-4">
 
-            <div class="d-flex justify-content-center py-2 bg-light shadow-lg my-4">
+            <div class="d-flex justify-content-center py-2 bg-light shadow-lg my-0">
                 <h1 class="fw-bold"><%= edit ? a.getTitle() : "New Artwork"%></h1>
             </div>
 
