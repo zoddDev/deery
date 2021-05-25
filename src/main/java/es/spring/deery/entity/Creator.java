@@ -12,7 +12,7 @@ public class Creator {
     private Collection<OC> originalCharactersByUserbdId;
 
     @Id
-    @Column(name = "USERBD_ID")
+    @Column(name = "userbd_id")
     public Integer getUserbdId() {
         return userbdId;
     }
@@ -34,7 +34,7 @@ public class Creator {
         return Objects.hash(userbdId);
     }
 
-    @OneToMany(mappedBy = "creatorByCreatorId")
+    @OneToMany(mappedBy = "creatorByCreatorUserbdId")
     public Collection<Artwork> getArtworksByUserbdId() {
         return artworksByUserbdId;
     }
@@ -44,7 +44,7 @@ public class Creator {
     }
 
     @OneToOne
-    @JoinColumn(name = "USERBD_ID", referencedColumnName = "ID", nullable = false)
+    @JoinColumn(name = "userbd_id", referencedColumnName = "id", nullable = false)
     public User getUserbdByUserbdId() {
         return userbdByUserbdId;
     }
@@ -53,7 +53,7 @@ public class Creator {
         this.userbdByUserbdId = userbdByUserbdId;
     }
 
-    @OneToMany(mappedBy = "creatorByCreatorId")
+    @OneToMany(mappedBy = "creatorByCreatorUserbdId")
     public Collection<OC> getOriginalCharactersByUserbdId() {
         return originalCharactersByUserbdId;
     }

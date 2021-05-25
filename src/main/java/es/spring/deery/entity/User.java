@@ -1,13 +1,11 @@
 package es.spring.deery.entity;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "USERBD", schema = "DEERY", catalog = "")
+@Table(name = "userbd", schema = "public", catalog = "d1aqao9uh4nr72")
 public class User {
     private Integer id;
     private String email;
@@ -17,9 +15,7 @@ public class User {
     private Creator creatorById;
 
     @Id
-    @GenericGenerator(name="kaugen" , strategy="increment")
-    @GeneratedValue(generator="kaugen")
-    @Column(name = "ID")
+    @Column(name = "id")
     public Integer getId() {
         return id;
     }
@@ -29,7 +25,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "EMAIL")
+    @Column(name = "email")
     public String getEmail() {
         return email;
     }
@@ -39,7 +35,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "USERNAME")
+    @Column(name = "username")
     public String getUsername() {
         return username;
     }
@@ -49,7 +45,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "PASSWORD")
+    @Column(name = "password")
     public String getPassword() {
         return password;
     }

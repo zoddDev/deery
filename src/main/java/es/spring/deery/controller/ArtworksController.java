@@ -20,6 +20,7 @@ import java.util.List;
 
 @Controller
 public class ArtworksController {
+
     private UserRepository userRepository;
 
     private ArtworkRepository artworkRepository;
@@ -81,7 +82,7 @@ public class ArtworksController {
         Artwork a = edit ? artworkRepository.findById(Integer.parseInt(id)).get() : new Artwork();
         a.setTitle(title);
         a.setDescription(description);
-        a.setCreatorByCreatorId(creatorRepository.findById(1).get());
+        a.setCreatorByCreatorUserbdId(creatorRepository.findById(1).get());
 
         if (!edit)
             a.setDate(new Date(new java.util.Date().getTime()));

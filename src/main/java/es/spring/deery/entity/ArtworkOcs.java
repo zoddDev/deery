@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "ARTWORK_OCS", schema = "DEERY", catalog = "")
+@Table(name = "artwork_ocs", schema = "public", catalog = "d1aqao9uh4nr72")
 @IdClass(ArtworkOcsPK.class)
 public class ArtworkOcs {
     private Integer originalCharacterId;
@@ -13,7 +13,7 @@ public class ArtworkOcs {
     private Artwork artworkByArtworkId;
 
     @Id
-    @Column(name = "ORIGINAL_CHARACTER_ID", insertable = false, updatable = false)
+    @Column(name = "original_character_id", insertable = false, updatable = false)
     public Integer getOriginalCharacterId() {
         return originalCharacterId;
     }
@@ -23,7 +23,7 @@ public class ArtworkOcs {
     }
 
     @Id
-    @Column(name = "ARTWORK_ID", insertable = false, updatable = false)
+    @Column(name = "artwork_id", insertable = false, updatable = false)
     public Integer getArtworkId() {
         return artworkId;
     }
@@ -46,7 +46,7 @@ public class ArtworkOcs {
     }
 
     @ManyToOne
-    @JoinColumn(name = "ORIGINAL_CHARACTER_ID", referencedColumnName = "ID", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "original_character_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     public OC getOriginalCharacterByOriginalCharacterId() {
         return originalCharacterByOriginalCharacterId;
     }
@@ -56,7 +56,7 @@ public class ArtworkOcs {
     }
 
     @ManyToOne
-    @JoinColumn(name = "ARTWORK_ID", referencedColumnName = "ID", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "artwork_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     public Artwork getArtworkByArtworkId() {
         return artworkByArtworkId;
     }

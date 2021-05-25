@@ -9,7 +9,7 @@ public class ArtworkOcsPK implements Serializable {
     private Integer originalCharacterId;
     private Integer artworkId;
 
-    @Column(name = "ORIGINAL_CHARACTER_ID")
+    @Column(name = "original_character_id")
     @Id
     public Integer getOriginalCharacterId() {
         return originalCharacterId;
@@ -19,7 +19,7 @@ public class ArtworkOcsPK implements Serializable {
         this.originalCharacterId = originalCharacterId;
     }
 
-    @Column(name = "ARTWORK_ID")
+    @Column(name = "artwork_id")
     @Id
     public Integer getArtworkId() {
         return artworkId;

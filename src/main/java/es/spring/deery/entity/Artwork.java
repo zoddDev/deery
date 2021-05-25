@@ -15,14 +15,14 @@ public class Artwork {
     private String title;
     private String description;
     private Date date;
-    private Creator creatorByCreatorId;
+    private Creator creatorByCreatorUserbdId;
     private Collection<ArtworkOcs> artworkOcsById;
     private Collection<Comment> commentsById;
 
     @Id
     @GenericGenerator(name="kaugen" , strategy="increment")
     @GeneratedValue(generator="kaugen")
-    @Column(name = "ID")
+    @Column(name = "id")
     public Integer getId() {
         return id;
     }
@@ -32,7 +32,7 @@ public class Artwork {
     }
 
     @Basic
-    @Column(name = "IMG")
+    @Column(name = "img")
     public byte[] getImg() {
         return img;
     }
@@ -42,7 +42,7 @@ public class Artwork {
     }
 
     @Basic
-    @Column(name = "TITLE")
+    @Column(name = "title")
     public String getTitle() {
         return title;
     }
@@ -52,7 +52,7 @@ public class Artwork {
     }
 
     @Basic
-    @Column(name = "DESCRIPTION")
+    @Column(name = "description")
     public String getDescription() {
         return description;
     }
@@ -62,7 +62,7 @@ public class Artwork {
     }
 
     @Basic
-    @Column(name = "DATE")
+    @Column(name = "date")
     public Date getDate() {
         return date;
     }
@@ -87,13 +87,13 @@ public class Artwork {
     }
 
     @ManyToOne
-    @JoinColumn(name = "CREATOR_ID", referencedColumnName = "USERBD_ID", nullable = false)
-    public Creator getCreatorByCreatorId() {
-        return creatorByCreatorId;
+    @JoinColumn(name = "creator_userbd_id", referencedColumnName = "userbd_id", nullable = false)
+    public Creator getCreatorByCreatorUserbdId() {
+        return creatorByCreatorUserbdId;
     }
 
-    public void setCreatorByCreatorId(Creator creatorByCreatorId) {
-        this.creatorByCreatorId = creatorByCreatorId;
+    public void setCreatorByCreatorUserbdId(Creator creatorByCreatorUserbdId) {
+        this.creatorByCreatorUserbdId = creatorByCreatorUserbdId;
     }
 
     @OneToMany(mappedBy = "artworkByArtworkId")

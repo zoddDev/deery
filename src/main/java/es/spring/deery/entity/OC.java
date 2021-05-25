@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "ORIGINAL_CHARACTER", schema = "DEERY", catalog = "")
+@Table(name = "original_character", schema = "public", catalog = "d1aqao9uh4nr72")
 public class OC {
     private Integer id;
     private byte[] img;
@@ -16,10 +16,10 @@ public class OC {
     private Date date;
     private Collection<ArtworkOcs> artworkOcsById;
     private Collection<Comment> commentsById;
-    private Creator creatorByCreatorId;
+    private Creator creatorByCreatorUserbdId;
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "id")
     public Integer getId() {
         return id;
     }
@@ -29,7 +29,7 @@ public class OC {
     }
 
     @Basic
-    @Column(name = "IMG")
+    @Column(name = "img")
     public byte[] getImg() {
         return img;
     }
@@ -39,7 +39,7 @@ public class OC {
     }
 
     @Basic
-    @Column(name = "NAME")
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -49,7 +49,7 @@ public class OC {
     }
 
     @Basic
-    @Column(name = "DESCRIPTION")
+    @Column(name = "description")
     public String getDescription() {
         return description;
     }
@@ -59,7 +59,7 @@ public class OC {
     }
 
     @Basic
-    @Column(name = "DATE")
+    @Column(name = "date")
     public Date getDate() {
         return date;
     }
@@ -102,12 +102,12 @@ public class OC {
     }
 
     @ManyToOne
-    @JoinColumn(name = "CREATOR_ID", referencedColumnName = "USERBD_ID", nullable = false)
-    public Creator getCreatorByCreatorId() {
-        return creatorByCreatorId;
+    @JoinColumn(name = "creator_userbd_id", referencedColumnName = "userbd_id", nullable = false)
+    public Creator getCreatorByCreatorUserbdId() {
+        return creatorByCreatorUserbdId;
     }
 
-    public void setCreatorByCreatorId(Creator creatorByCreatorId) {
-        this.creatorByCreatorId = creatorByCreatorId;
+    public void setCreatorByCreatorUserbdId(Creator creatorByCreatorUserbdId) {
+        this.creatorByCreatorUserbdId = creatorByCreatorUserbdId;
     }
 }

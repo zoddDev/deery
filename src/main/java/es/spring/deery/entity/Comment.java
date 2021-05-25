@@ -14,7 +14,7 @@ public class Comment {
     private User userbdByUserbdId;
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "id")
     public Integer getId() {
         return id;
     }
@@ -24,7 +24,7 @@ public class Comment {
     }
 
     @Basic
-    @Column(name = "TEXT")
+    @Column(name = "text")
     public String getText() {
         return text;
     }
@@ -34,7 +34,7 @@ public class Comment {
     }
 
     @Basic
-    @Column(name = "DATE")
+    @Column(name = "date")
     public Date getDate() {
         return date;
     }
@@ -57,7 +57,7 @@ public class Comment {
     }
 
     @ManyToOne
-    @JoinColumn(name = "ORIGINAL_CHARACTER_ID", referencedColumnName = "ID")
+    @JoinColumn(name = "original_character_id", referencedColumnName = "id")
     public OC getOriginalCharacterByOriginalCharacterId() {
         return originalCharacterByOriginalCharacterId;
     }
@@ -67,7 +67,7 @@ public class Comment {
     }
 
     @ManyToOne
-    @JoinColumn(name = "ARTWORK_ID", referencedColumnName = "ID")
+    @JoinColumn(name = "artwork_id", referencedColumnName = "id")
     public Artwork getArtworkByArtworkId() {
         return artworkByArtworkId;
     }
@@ -77,7 +77,7 @@ public class Comment {
     }
 
     @ManyToOne
-    @JoinColumn(name = "USERBD_ID", referencedColumnName = "ID", nullable = false)
+    @JoinColumn(name = "userbd_id", referencedColumnName = "id", nullable = false)
     public User getUserbdByUserbdId() {
         return userbdByUserbdId;
     }
