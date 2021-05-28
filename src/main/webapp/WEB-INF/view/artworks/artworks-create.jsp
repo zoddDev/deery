@@ -53,7 +53,7 @@
             }
         });
 
-        img = Images.toImage(a.getImg());
+        img = a.getImg() == null ? null : Images.toImage(a.getImg());
     }
 %>
 <jsp:include page="../header.jsp"></jsp:include>
@@ -62,41 +62,43 @@
     <form action="artworks-save" method="POST" enctype="multipart/form-data">
         <div class="row mt-5 justify-content-center px-2 g-7 gy-4">
 
-            <div class="d-flex justify-content-center py-2 bg-light shadow-lg my-0">
+            <div class="d-flex justify-content-center py-2 bg-light shadow-lg my-0 rounded">
                 <h1 class="fw-bold"><%= edit ? a.getTitle() : "New Artwork"%></h1>
             </div>
 
             <!--IMG-->
-            <div class="col-md-offset-2 <%= !edit || ((double) img.getHeight() / (double) img.getWidth() >= 0.8) ? "col-sm-4" : "col-sm-8" %>">
-                <label class="bg-light p-2 mt-2 shadow-lg" style="cursor: pointer !important;" for="imgInp">
-                    <img src="<%= edit ? "data:image/jpg;base64, " + Base64.getEncoder().encodeToString(a.getImg()) : "images/upload.svg" %>" class="img-fluid mx-auto d-block post-display-horizontal" id="img">
+            <div class="col-md-offset-2 <%= !edit || img == null || ((double) img.getHeight() / (double) img.getWidth() >= 0.8) ? "col-sm-4" : "col-sm-8" %>">
+                <label class="bg-light p-2 mt-2 shadow-lg rounded" style="cursor: pointer !important;" for="imgInp">
+                    <img src="<%= img != null && edit ? "data:image/jpg;base64, " + Base64.getEncoder().encodeToString(a.getImg()) : "images/upload.svg" %>" class="img-fluid mx-auto d-block post-display-horizontal" id="img">
                 </label>
             </div>
 
             <!--FORM FIELDS-->
             <div class="col-sm-8 justify-content-center">
-                <div class="mt-2 p-4 w-100 bg-light shadow-lg">
+                <div class="mt-2 p-4 w-100 bg-light shadow-lg rounded">
                     <input type="text" hidden class="form-control" name="id" value="<%= edit ? a.getId() : "" %>">
-                    <label class="form-label">Title *</label>
+                    <label class="form-label fw-bold">Title *</label>
                     <input type="text" class="form-control" name="title" value="<%= edit ? a.getTitle() : "" %>" required><br/>
 
-                    <label class="form-label">Description</label>
+                    <label class="form-label fw-bold">Description</label>
                     <input type="text" class="form-control" name="description" value="<%= edit ? a.getDescription() : "" %>"><br/>
 
-                    <label class="form-label"><%= edit ? "File (Leave blank to keep the current image)" : "File *" %></label>
+                    <label class="form-label fw-bold"><%= edit ? "File (Leave blank to keep the current image)" : "File *" %></label>
                     <input type="file" class="form-control" name="file" accept="image/png, image/jpeg" id="imgInp" <%= edit ? "" : "required" %>><br/>
 
-                    <button type="button" class="btn btn-outline-primary w-100" data-bs-toggle="modal" data-bs-target="#openCharacterDialog">Characters</button>
+                    <button type="button" class="btn btn-outline-primary w-100 fw-bold" data-bs-toggle="modal" data-bs-target="#openCharacterDialog">Characters</button>
                     <div class="row my-5 justify-content-center">
                     <%
                         if (edit) {
                         %>
-                            <a href="artworks-create" <%= edit ? "data-bs-toggle=\"modal\" data-bs-target=\"#openEditDialog\"" : "" %> class="btn btn-success text-light w-50 mx-3"><%= edit ? "Confirm" : "Create" %></a>
-                            <a href="artworks-create" class="btn btn-danger text-light w-25" data-bs-toggle="modal" data-bs-target="#openDeleteDialog">Delete</a>
+<%--                            <a href="artworks-create" data-bs-toggle="modal" data-bs-target="#openEditDialog" class="btn btn-success text-light w-50 mx-3 fw-bold">Confirm</a>--%>
+                        <input type="submit" class="btn btn-success text-light fw-bold" value="Confirm">
+
+                        <a href="artworks-create" class="btn btn-danger text-light w-25 fw-bold" data-bs-toggle="modal" data-bs-target="#openDeleteDialog">Delete</a>
                         <%
                         } else {
                         %>
-                            <input type="submit" class="btn btn-success text-light" value="Create">
+                            <input type="submit" class="btn btn-success text-light fw-bold" value="Create">
                         <%
                         }
                     %>
@@ -107,13 +109,13 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
 
-                                <div class="modal-header">
+                                <div class="modal-header bg-light">
                                     <h3> Characters ✨ </h3>
 
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
 
-                                <div class="modal-body">
+                                <div class="modal-body bg-light">
                                     <input type="checkbox" hidden name="ocs-in-artwork"/>
                                     <%
                                         for (OC oc : ocs) {
@@ -137,19 +139,18 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
 
-                                <div class="modal-header">
+                                <div class="modal-header bg-light">
                                     <h3> Confirm changes ✔️ </h3>
-
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
 
-                                <div class="modal-body">
+                                <div class="modal-body bg-light">
                                     <div class="row d-flex text-center">
                                         <p class="lead my-5">Proceed with changes?</p>
                                     </div>
                                     <div class="center-block text-center">
-                                        <input type="submit" class="btn btn-success text-light" value="Apply changes">
-                                        <a href="" class="mx-3" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
+                                        <input type="submit" class="btn btn-success text-light fw-bold" value="Apply changes">
+                                        <a href="" class="mx-3 text-primary" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
                                     </div>
                                 </div>
                             </div>
@@ -161,20 +162,19 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
 
-                                <div class="modal-header">
+                                <div class="modal-header bg-light">
                                     <h3> Confirm deletion ❌ </h3>
-
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
 
-                                <div class="modal-body">
+                                <div class="modal-body bg-light">
                                     <p class="p-3 text-danger">WARNING: Once you click the delete button you won't be able to recover your artwork.</p>
                                     <div class="row d-flex text-center">
                                         <p class="lead my-5">Proceed with deletion?</p>
                                     </div>
                                     <div class="center-block text-center">
-                                        <a href="artworks-delete?id=<%= edit ? a.getId() : null %>" class="btn btn-danger text-light">Yes, I want to delete my artwork</a>
-                                        <a href="" class="mx-3" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
+                                        <a href="artworks-delete?id=<%= edit ? a.getId() : null %>" class="btn btn-danger text-light fw-bold">Yes, I want to delete my artwork</a>
+                                        <a href="" class="mx-3 text-primary" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
                                     </div>
                                 </div>
                             </div>
@@ -192,6 +192,7 @@
         crossorigin="anonymous"></script>
 </body>
 <script>
+    // Image Preview
     imgInp.onchange = evt => {
         const [file] = imgInp.files
         if (file) {

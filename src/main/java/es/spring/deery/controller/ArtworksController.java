@@ -2,6 +2,7 @@ package es.spring.deery.controller;
 
 import es.spring.deery.entity.Artwork;
 import es.spring.deery.entity.ArtworkOcs;
+import es.spring.deery.entity.Comment;
 import es.spring.deery.entity.OC;
 import es.spring.deery.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,13 @@ public class ArtworksController {
     private OCRepository ocRepository;
 
     private ArtworkOCsRepository artworkOCsRepository;
+
+    private CommentRepository commentRepository;
+
+    @Autowired
+    public void setCommentRepository(CommentRepository commentRepository) {
+        this.commentRepository = commentRepository;
+    }
 
     @Autowired
     public void setArtworkOCsRepository(ArtworkOCsRepository artworkOCsRepository) {
@@ -68,6 +76,36 @@ public class ArtworksController {
         model.addAttribute("ocs", ocs);
 
         return "artworks/artworks-create";
+    }
+
+    @GetMapping("/artworks-display")
+    public String artworksDisplay(Model model,  @RequestParam("id") String id) {
+        Artwork a = artworkRepository.getById(Integer.parseInt(id));
+        List<OC> ocs = ocRepository.findAll();
+        model.addAttribute("artwork", a);
+        model.addAttribute("ocs", ocs);
+
+        return "artworks/artworks-display";
+    }
+
+    @GetMapping("/artworks-edit")
+    public String artworksEdit(Model model,  @RequestParam("id") String id) {
+        Artwork a = artworkRepository.getById(Integer.parseInt(id));
+        List<OC> ocs = ocRepository.findAll();
+        model.addAttribute("artwork", a);
+        model.addAttribute("ocs", ocs);
+
+        return "artworks/artworks-create";
+    }
+
+    @GetMapping("/artworks-delete")
+    public String artworksDelete(Model model, @RequestParam("id") String id) {
+        Artwork a = artworkRepository.getById(Integer.parseInt(id));
+
+        a.getArtworkOcsById().forEach(aocs -> artworkOCsRepository.delete(aocs));
+        artworkRepository.delete(a);
+
+        return "redirect:artworks";
     }
 
     @PostMapping("/artworks-save")
@@ -126,22 +164,20 @@ public class ArtworksController {
         return "redirect:artworks";
     }
 
-    @GetMapping("/artworks-edit")
-    public String artworksEdit(Model model,  @RequestParam("id") String id) {
-        Artwork a = artworkRepository.getById(Integer.parseInt(id));
-        List<OC> ocs = ocRepository.findAll();
-        model.addAttribute("artwork", a);
-        model.addAttribute("ocs", ocs);
+    @PostMapping("/artworks-comment")
+    public String artworksComment(Model model,
+                                  @RequestParam("id") String id,
+                                  @RequestParam("user-id") String userId,
+                                  @RequestParam("comment") String commentStr)
+    {
 
-        return "artworks/artworks-create";
-    }
-
-    @GetMapping("/artworks-delete")
-    public String artworksDelete(Model model, @RequestParam("id") String id) {
         Artwork a = artworkRepository.getById(Integer.parseInt(id));
 
-        a.getArtworkOcsById().forEach(aocs -> artworkOCsRepository.delete(aocs));
-        artworkRepository.delete(a);
+        Comment comment = new Comment();
+
+        comment.setDate(new Date(new java.util.Date().getTime()));
+
+        comment.setText(commentStr);
 
         return "redirect:artworks";
     }

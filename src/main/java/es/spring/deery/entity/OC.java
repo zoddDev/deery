@@ -1,5 +1,7 @@
 package es.spring.deery.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Arrays;
@@ -19,6 +21,8 @@ public class OC {
     private Creator creatorByCreatorUserbdId;
 
     @Id
+    @GenericGenerator(name="OC" , strategy="increment")
+    @GeneratedValue(generator="OC")
     @Column(name = "id")
     public Integer getId() {
         return id;

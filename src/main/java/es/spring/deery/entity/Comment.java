@@ -1,5 +1,7 @@
 package es.spring.deery.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Objects;
@@ -14,6 +16,8 @@ public class Comment {
     private User userbdByUserbdId;
 
     @Id
+    @GenericGenerator(name="Comment" , strategy="increment")
+    @GeneratedValue(generator="Comment")
     @Column(name = "id")
     public Integer getId() {
         return id;

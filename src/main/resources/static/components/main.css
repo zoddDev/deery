@@ -85,3 +85,18 @@ undecorated a:active, a:focus {
   background-attachment: fixed;
   /*background-position: center;*/
 }
+
+.form-control:focus {
+  color: #212529 !important;
+  background-color: #fff !important;
+  border-color: rgba(136, 192, 208, 0.68) !important;
+  outline: 0 !important;
+  box-shadow: 0 0 0 0.25rem rgba(136, 192, 208, 0.55) !important;
+}
+input {
+  filter: none;
+}
+
+.undecorated {
+  text-decoration: none;
+}

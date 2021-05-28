@@ -28,6 +28,7 @@
   --bs-light: #eceff4;
   --bs-dark: #3b4252;
   --bs-gray: #4c566a;
+  --bs-pink: #b48ead;
   --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
@@ -3154,6 +3155,36 @@ textarea.form-control-lg {
   border-color: #4c566a;
 }
 
+.btn-pink {
+  color: #000;
+  background-color: #b48ead;
+  border-color: #b48ead;
+}
+.btn-pink:hover {
+  color: #000;
+  background-color: #bf9fb9;
+  border-color: #bc99b5;
+}
+.btn-check:focus + .btn-pink, .btn-pink:focus {
+  color: #000;
+  background-color: #bf9fb9;
+  border-color: #bc99b5;
+  box-shadow: 0 0 0 0.25rem rgba(153, 121, 147, 0.5);
+}
+.btn-check:checked + .btn-pink, .btn-check:active + .btn-pink, .btn-pink:active, .btn-pink.active, .show > .btn-pink.dropdown-toggle {
+  color: #000;
+  background-color: #c3a5bd;
+  border-color: #bc99b5;
+}
+.btn-check:checked + .btn-pink:focus, .btn-check:active + .btn-pink:focus, .btn-pink:active:focus, .btn-pink.active:focus, .show > .btn-pink.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.25rem rgba(153, 121, 147, 0.5);
+}
+.btn-pink:disabled, .btn-pink.disabled {
+  color: #000;
+  background-color: #b48ead;
+  border-color: #b48ead;
+}
+
 .btn-outline-primary {
   color: #5e81ac;
   border-color: #5e81ac;
@@ -3376,6 +3407,31 @@ textarea.form-control-lg {
 }
 .btn-outline-gray:disabled, .btn-outline-gray.disabled {
   color: #4c566a;
+  background-color: transparent;
+}
+
+.btn-outline-pink {
+  color: #b48ead;
+  border-color: #b48ead;
+}
+.btn-outline-pink:hover {
+  color: #000;
+  background-color: #b48ead;
+  border-color: #b48ead;
+}
+.btn-check:focus + .btn-outline-pink, .btn-outline-pink:focus {
+  box-shadow: 0 0 0 0.25rem rgba(180, 142, 173, 0.5);
+}
+.btn-check:checked + .btn-outline-pink, .btn-check:active + .btn-outline-pink, .btn-outline-pink:active, .btn-outline-pink.active, .btn-outline-pink.dropdown-toggle.show {
+  color: #000;
+  background-color: #b48ead;
+  border-color: #b48ead;
+}
+.btn-check:checked + .btn-outline-pink:focus, .btn-check:active + .btn-outline-pink:focus, .btn-outline-pink:active:focus, .btn-outline-pink.active:focus, .btn-outline-pink.dropdown-toggle.show:focus {
+  box-shadow: 0 0 0 0.25rem rgba(180, 142, 173, 0.5);
+}
+.btn-outline-pink:disabled, .btn-outline-pink.disabled {
+  color: #b48ead;
   background-color: transparent;
 }
 
@@ -4754,6 +4810,15 @@ textarea.form-control-lg {
   color: #252a33;
 }
 
+.alert-pink {
+  color: #6c5568;
+  background-color: #f0e8ef;
+  border-color: #e9dde6;
+}
+.alert-pink .alert-link {
+  color: #564453;
+}
+
 @keyframes progress-bar-stripes {
   0% {
     background-position-x: 1rem;
@@ -5145,6 +5210,20 @@ textarea.form-control-lg {
   color: #fff;
   background-color: #2e3440;
   border-color: #2e3440;
+}
+
+.list-group-item-pink {
+  color: #6c5568;
+  background-color: #f0e8ef;
+}
+.list-group-item-pink.list-group-item-action:hover, .list-group-item-pink.list-group-item-action:focus {
+  color: #6c5568;
+  background-color: #d8d1d7;
+}
+.list-group-item-pink.list-group-item-action.active {
+  color: #fff;
+  background-color: #6c5568;
+  border-color: #6c5568;
 }
 
 .btn-close {
@@ -6146,6 +6225,13 @@ textarea.form-control-lg {
   color: #3d4555;
 }
 
+.link-pink {
+  color: #b48ead;
+}
+.link-pink:hover, .link-pink:focus {
+  color: #c3a5bd;
+}
+
 .ratio {
   position: relative;
   width: 100%;
@@ -6527,6 +6613,10 @@ textarea.form-control-lg {
 
 .border-gray {
   border-color: #4c566a !important;
+}
+
+.border-pink {
+  border-color: #b48ead !important;
 }
 
 .border-1 {
@@ -7358,6 +7448,10 @@ textarea.form-control-lg {
   color: #4c566a !important;
 }
 
+.text-pink {
+  color: #b48ead !important;
+}
+
 .text-body {
   color: #212529 !important;
 }
@@ -7412,6 +7506,10 @@ textarea.form-control-lg {
 
 .bg-gray {
   background-color: #4c566a !important;
+}
+
+.bg-pink {
+  background-color: #b48ead !important;
 }
 
 .bg-body {

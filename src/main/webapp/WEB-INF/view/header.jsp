@@ -1,4 +1,4 @@
-<%--
+<%@ page import="es.spring.deery.model.Autentication" %><%--
   Created by IntelliJ IDEA.
   User: josie
   Date: 23/05/2021
@@ -19,14 +19,33 @@
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         <li class="nav-item me-4">
-                            <a class="nav-link <%= request.getAttribute("currentpage") != null && request.getAttribute("currentpage").equals("new")  ? "link-active" : ""  %>" href="/artworks-create">New Artwork</a>
+                            <a class="nav-link <%= request.getAttribute("currentpage") != null && request.getAttribute("currentpage").equals("new-artwork")  ? "link-active" : ""  %>" href="/artworks-create">New Artwork</a>
                         </li>
                         <li class="nav-item me-4">
                             <a class="nav-link <%= request.getAttribute("currentpage") != null && request.getAttribute("currentpage").equals("artworks")  ? "link-active" : ""  %>" href="/artworks">Artworks</a>
                         </li>
                         <li class="nav-item me-5">
-                            <a class="nav-link <%= request.getAttribute("currentpage") != null && request.getAttribute("currentpage").equals("characters")  ? "link-active" : ""  %>" aria-current="page" href="./index.html">Characters</a>
+                            <a class="nav-link <%= request.getAttribute("currentpage") != null && request.getAttribute("currentpage").equals("characters")  ? "link-active" : ""  %>" aria-current="page" href="/characters">Characters</a>
                         </li>
+
+                        <%
+                        if (!Autentication.isLogged(request)) {
+                        %>
+                            <li class="nav-item me-5">
+                                <a class="nav-link <%= request.getAttribute("currentpage") != null && request.getAttribute("currentpage").equals("login")  ? "link-active" : ""  %>" aria-current="page" href="/login">Log in</a>
+                            </li>
+                            <li class="nav-item me-5">
+                                <a class="nav-link <%= request.getAttribute("currentpage") != null && request.getAttribute("currentpage").equals("register")  ? "link-active" : ""  %>" aria-current="page" href="/register">Register</a>
+                            </li>
+                        <%
+                        } else {
+                        %>
+                            <li class="nav-item me-5">
+                                <a class="nav-link <%= request.getAttribute("currentpage") != null && request.getAttribute("currentpage").equals("logout")  ? "link-active" : ""  %>" aria-current="page" href="/logout">Log out</a>
+                            </li>
+                        <%
+                        }
+                        %>
                     </ul>
                 </div>
 
