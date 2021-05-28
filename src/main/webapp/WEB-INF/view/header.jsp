@@ -18,9 +18,16 @@
             <div class="d-flex justify-content-end">
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mb-2 mb-lg-0">
+                        <%
+                            if (Autentication.isCreator(request)) {
+                        %>
                         <li class="nav-item me-4">
                             <a class="nav-link <%= request.getAttribute("currentpage") != null && request.getAttribute("currentpage").equals("new-artwork")  ? "link-active" : ""  %>" href="/artworks-create">New Artwork</a>
                         </li>
+                        <%
+                            }
+                        %>
+
                         <li class="nav-item me-4">
                             <a class="nav-link <%= request.getAttribute("currentpage") != null && request.getAttribute("currentpage").equals("artworks")  ? "link-active" : ""  %>" href="/artworks">Artworks</a>
                         </li>
