@@ -146,7 +146,7 @@
                     }
                 %>
 
-                <form action="artworks-comment" method="POST" class="col-sm-8 <%= comments.isEmpty() ? "" : "mt-lg-5" %>">
+                <form action="artworks-comment" method="POST" class="col-sm-8 <%= comments.isEmpty() ? "" : "mt-5" %>">
                     <input type="text" name="id"
                            value="<%= a.getId() %>"
                            hidden>

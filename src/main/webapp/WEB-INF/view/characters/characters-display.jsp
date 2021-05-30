@@ -143,7 +143,7 @@
                     }
                 %>
 
-                <form action="characters-comment" method="POST" class="col-sm-8 <%= comments.isEmpty() ? "" : "mt-lg-5" %>">
+                <form action="characters-comment" method="POST" class="col-sm-8 <%= comments.isEmpty() ? "" : "mt-5" %>">
                     <input type="text" name="id"
                            value="<%= oc.getId() %>"
                            hidden>
