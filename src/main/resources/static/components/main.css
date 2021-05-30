@@ -49,11 +49,13 @@ a.link-active {
   object-position: center !important;
   width: 800px;
 
+}
+
+.post {
   transition-duration: 0.25s;
 }
 
-
-.thumb-post:hover {
+.post:hover {
   opacity: 0.8;
   margin-top: -5px;
 }

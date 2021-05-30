@@ -65,7 +65,7 @@
         <div class="col-md-offset-2 <%= img == null || ((double) img.getHeight() / (double) img.getWidth() >= 0.8) ? "col-sm-4" : "col-sm-8" %>">
             <label class="bg-light p-2 mt-2 shadow-lg rounded">
                 <img src="<%= img != null ? "data:image/jpg;base64, " + Base64.getEncoder().encodeToString(a.getImg()) : "images/upload.svg" %>"
-                     class="img-fluid mx-auto d-block post-display-horizontal" id="img">
+                     class="img-fluid mx-auto d-block post-display-horizontal rounded" id="img">
             </label>
         </div>
 

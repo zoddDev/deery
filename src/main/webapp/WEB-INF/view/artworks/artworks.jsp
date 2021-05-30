@@ -47,14 +47,17 @@
         <%
             for (Artwork a : artworks) {
                 %>
-                <div class="col-md-6 col-lg-4 mb-5 p-3">
-                    <div class="row justify-content-center">
-                        <a class="undecorated" href="artworks-display?id=<%= a.getId() %>">
 
-                            <img src="data:image/jpg;base64, <%= Base64.getEncoder().encodeToString(a.getImg()) %>" class="bg-light img-fluid mx-auto d-block thumb-post p-2 shadow-lg rounded">
+            <div class="col-md-6 col-lg-4 mb-5 post">
+                <div class="p-3">
+                    <div class="bg-light rounded p-2 text-center">
+                        <a class="undecorated" href="artworks-display?id=<%= a.getId() %>">
+                            <img src="data:image/jpg;base64, <%= Base64.getEncoder().encodeToString(a.getImg()) %>" class="img-fluid mx-auto d-block rounded thumb-post">
+                            <p class="lead fw-bold bg-light undecorated text-dark" style="font-size: 200%"><%= a.getTitle() %></p>
                         </a>
                     </div>
                 </div>
+            </div>
                 <%
             }
         %>
