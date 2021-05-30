@@ -50,7 +50,7 @@
         %>
         <div class="col-md-6 col-lg-4 mb-5">
             <div class="p-3">
-                <div class="row text-center bg-light">
+                <div class="row text-center bg-light rounded">
                     <a class="undecorated" href="characters-display?id=<%= oc.getId() %>" style="padding-top: 15px;">
                         <img src="<%= oc.getImg() == null ? "images/upload.svg" : "data:image/jpg;base64, " + Base64.getEncoder().encodeToString(oc.getImg()) %>" class="bg-light img-fluid mx-auto d-block thumb-post p-2">
                         <p class="lead fw-bold bg-light undecorated text-dark" style="font-size: 200%"><%= oc.getName() %></p>
