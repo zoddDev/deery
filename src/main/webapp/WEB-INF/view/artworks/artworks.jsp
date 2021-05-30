@@ -43,7 +43,7 @@
         <h1 class="text-lg-center text-light fw-bold" style="font-size: 300%;">DEERY'S ARTWORKS</h1>
     </div>
 
-    <div class="row mt-5">
+    <div class="row mt-5 justify-content-center">
         <%
             for (Artwork a : artworks) {
                 %>

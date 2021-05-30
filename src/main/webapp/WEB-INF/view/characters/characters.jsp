@@ -41,17 +41,17 @@
 
 <div class="container">
     <div class="row m-5 justify-content-center text-center">
-        <h1 class="text-lg-center text-light fw-bold" style="font-size: 300%;">DEERY'S ORIGINAL CHARACTERS</h1>
+        <h1 class="text-lg-center text-light fw-bold" style="font-size: 300%;">DEERY'S OCS</h1>
     </div>
 
-    <div class="row mt-5">
+    <div class="row mt-5 justify-content-center">
         <%
             for (OC oc : ocs) {
         %>
         <div class="col-md-6 col-lg-4 mb-5">
             <div class="p-3">
-                <div class="row justify-content-center text-center bg-light">
-                    <a class="undecorated" href="characters-<%= Autentication.isOwner(request, oc) ? "edit" : "display" %>?id=<%= oc.getId() %>" style="padding-top: 15px;">
+                <div class="row text-center bg-light">
+                    <a class="undecorated" href="characters-display?id=<%= oc.getId() %>" style="padding-top: 15px;">
                         <img src="<%= oc.getImg() == null ? "images/upload.svg" : "data:image/jpg;base64, " + Base64.getEncoder().encodeToString(oc.getImg()) %>" class="bg-light img-fluid mx-auto d-block thumb-post p-2">
                         <p class="lead fw-bold bg-light undecorated text-dark" style="font-size: 200%"><%= oc.getName() %></p>
                     </a>

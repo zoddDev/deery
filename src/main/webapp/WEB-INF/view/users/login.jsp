@@ -30,13 +30,15 @@
 %>
 <jsp:include page="../header.jsp"></jsp:include>
 
-<div class="container">
-        <div class="row m-5 justify-content-center text-center bg-light shadow rounded">
-            <h1 class="text-lg-center text-dark fw-bold py-2" style="font-size: 300%;">Log in</h1>
+<div class="container text-dark">
+    <div class="row mt-5 justify-content-center px-2 g-7 gy-4">
+
+        <div class="d-flex justify-content-center py-2 bg-light shadow-lg my-0 rounded">
+            <h1 class="fw-bold">Sign in</h1>
         </div>
 
-        <div class="row m-5 justify-content-center text-center bg-light shadow p-4 rounded">
-            <div class="col-md-6 mx-5">
+        <div class="col-md-6 px-0 mx-5">
+            <div class="bg-light rounded p-1 px-3 w-100">
                 <form action="login" method="POST">
                     <div class="my-4">
                         <label class="form-label lead fw-bold text-dark">Username</label>
@@ -50,10 +52,13 @@
                     <a href="/" class="mx-3 text-primary">Cancel</a>
                 </form>
             </div>
-            <div class="col-md-4 mx-5">
+        </div>
+        <div class="col-md-4 px-0">
+            <div class="bg-light rounded p-3 w-100">
                 <img src="images/anime-nord.png" class="w-100 rounded shadow-sm">
             </div>
         </div>
+    </div>
 </div>
 
 

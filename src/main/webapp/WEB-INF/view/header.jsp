@@ -24,6 +24,9 @@
                         <li class="nav-item me-4">
                             <a class="nav-link <%= request.getAttribute("currentpage") != null && request.getAttribute("currentpage").equals("new-artwork")  ? "link-active" : ""  %>" href="/artworks-create">New Artwork</a>
                         </li>
+                        <li class="nav-item me-4">
+                            <a class="nav-link <%= request.getAttribute("currentpage") != null && request.getAttribute("currentpage").equals("new-character")  ? "link-active" : ""  %>" href="/characters-create">New Character</a>
+                        </li>
                         <%
                             }
                         %>

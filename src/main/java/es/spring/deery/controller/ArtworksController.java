@@ -1,9 +1,6 @@
 package es.spring.deery.controller;
 
-import es.spring.deery.entity.Artwork;
-import es.spring.deery.entity.ArtworkOcs;
-import es.spring.deery.entity.Comment;
-import es.spring.deery.entity.OC;
+import es.spring.deery.entity.*;
 import es.spring.deery.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +15,8 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Controller
 public class ArtworksController {
@@ -82,8 +81,10 @@ public class ArtworksController {
     public String artworksDisplay(Model model,  @RequestParam("id") String id) {
         Artwork a = artworkRepository.getById(Integer.parseInt(id));
         List<OC> ocs = ocRepository.findAll();
+
         model.addAttribute("artwork", a);
         model.addAttribute("ocs", ocs);
+        model.addAttribute("comments", a.getCommentsById());
 
         return "artworks/artworks-display";
     }
@@ -125,7 +126,7 @@ public class ArtworksController {
         if (!edit)
             a.setDate(new Date(new java.util.Date().getTime()));
 
-        if (edit && (ocsInArtwork != null && !ocsInArtwork.isEmpty())) {
+        if (edit) {
             for (ArtworkOcs artworkOcs : a.getArtworkOcsById()) {
                 artworkOCsRepository.delete(artworkOcs);
             }
@@ -161,6 +162,10 @@ public class ArtworksController {
         // Edit or Create
         artworkRepository.save(a);
 
+        // Display saved changes
+        if (edit)
+            return "redirect:artworks-display?id=" + id;
+
         return "redirect:artworks";
     }
 
@@ -170,15 +175,17 @@ public class ArtworksController {
                                   @RequestParam("user-id") String userId,
                                   @RequestParam("comment") String commentStr)
     {
-
-        Artwork a = artworkRepository.getById(Integer.parseInt(id));
-
         Comment comment = new Comment();
+        User u = "".equals(userId) ? null : userRepository.findById(Integer.parseInt(userId)).get();
+        Artwork a = artworkRepository.findById(Integer.parseInt(id)).get();
 
         comment.setDate(new Date(new java.util.Date().getTime()));
-
         comment.setText(commentStr);
+        comment.setArtworkByArtworkId(a);
+        comment.setUserbdByUserbdId(u);
 
-        return "redirect:artworks";
+        commentRepository.save(comment);
+
+        return "redirect:artworks-display?id=" + id;
     }
 }

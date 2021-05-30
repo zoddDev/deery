@@ -81,7 +81,7 @@ public class Comment {
     }
 
     @ManyToOne
-    @JoinColumn(name = "userbd_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "userbd_id", referencedColumnName = "id")
     public User getUserbdByUserbdId() {
         return userbdByUserbdId;
     }

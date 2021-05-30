@@ -92,9 +92,9 @@
                         if (edit) {
                         %>
 <%--                            <a href="artworks-create" data-bs-toggle="modal" data-bs-target="#openEditDialog" class="btn btn-success text-light w-50 mx-3 fw-bold">Confirm</a>--%>
-                        <input type="submit" class="btn btn-success text-light fw-bold" value="Confirm">
+                        <input type="submit" class="btn btn-success text-light w-50 fw-bold mx-3" value="Confirm">
 
-                        <a href="artworks-create" class="btn btn-danger text-light w-25 fw-bold" data-bs-toggle="modal" data-bs-target="#openDeleteDialog">Delete</a>
+                        <a class="btn btn-danger text-light w-25 fw-bold" data-bs-toggle="modal" data-bs-target="#openDeleteDialog">Delete</a>
                         <%
                         } else {
                         %>
@@ -129,29 +129,6 @@
                                          <%
                                         }
                                     %>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--EDIT MODAL-->
-                    <div class="modal" id="openEditDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-
-                                <div class="modal-header bg-light">
-                                    <h3> Confirm changes ✔️ </h3>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-
-                                <div class="modal-body bg-light">
-                                    <div class="row d-flex text-center">
-                                        <p class="lead my-5">Proceed with changes?</p>
-                                    </div>
-                                    <div class="center-block text-center">
-                                        <input type="submit" class="btn btn-success text-light fw-bold" value="Apply changes">
-                                        <a href="" class="mx-3 text-primary" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>

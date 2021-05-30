@@ -54,7 +54,8 @@ a.link-active {
 
 
 .thumb-post:hover {
-  opacity: 0.9;
+  opacity: 0.8;
+  margin-top: -5px;
 }
 
 .bg-gradient-animated {

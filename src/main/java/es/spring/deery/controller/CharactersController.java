@@ -1,8 +1,6 @@
 package es.spring.deery.controller;
 
-import es.spring.deery.entity.Artwork;
-import es.spring.deery.entity.ArtworkOcs;
-import es.spring.deery.entity.OC;
+import es.spring.deery.entity.*;
 import es.spring.deery.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,6 +28,13 @@ public class CharactersController {
     private OCRepository ocRepository;
 
     private ArtworkOCsRepository artworkOCsRepository;
+
+    private CommentRepository commentRepository;
+
+    @Autowired
+    public void setCommentRepository(CommentRepository commentRepository) {
+        this.commentRepository = commentRepository;
+    }
 
     @Autowired
     public void setArtworkOCsRepository(ArtworkOCsRepository artworkOCsRepository) {
@@ -113,11 +118,41 @@ public class CharactersController {
 
     @GetMapping("/characters-delete")
     public String charactersDelete(Model model, @RequestParam("id") String id) {
-        Artwork a = artworkRepository.getById(Integer.parseInt(id));
+        OC oc = ocRepository.getById(Integer.parseInt(id));
 
-        a.getArtworkOcsById().forEach(aocs -> artworkOCsRepository.delete(aocs));
-        artworkRepository.delete(a);
+        oc.getArtworkOcsById().forEach(aocs -> artworkOCsRepository.delete(aocs));
+        ocRepository.delete(oc);
 
         return "redirect:characters";
+    }
+
+    @GetMapping("/characters-display")
+    public String characetrsDisplay(Model model,  @RequestParam("id") String id) {
+        OC oc = ocRepository.getById(Integer.parseInt(id));
+
+        model.addAttribute("oc", oc);
+        model.addAttribute("comments", oc.getCommentsById());
+
+        return "characters/characters-display";
+    }
+
+    @PostMapping("/characters-comment")
+    public String charactersComment(Model model,
+                                  @RequestParam("id") String id,
+                                  @RequestParam("user-id") String userId,
+                                  @RequestParam("comment") String commentStr)
+    {
+        Comment comment = new Comment();
+        User u = "".equals(userId) ? null : userRepository.findById(Integer.parseInt(userId)).get();
+        OC oc = ocRepository.findById(Integer.parseInt(id)).get();
+
+        comment.setDate(new Date(new java.util.Date().getTime()));
+        comment.setText(commentStr);
+        comment.setOriginalCharacterByOriginalCharacterId(oc);
+        comment.setUserbdByUserbdId(u);
+
+        commentRepository.save(comment);
+
+        return "redirect:characters-display?id=" + id;
     }
 }

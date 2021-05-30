@@ -33,23 +33,20 @@
 <%
     request.setAttribute("currentpage", "artworks");
 
-    Artwork a = (Artwork) request.getAttribute("artwork");
-    List<OC> ocs = (List<OC>) request.getAttribute("ocs");
+    OC oc = (OC) request.getAttribute("oc");
     List<Comment> comments = (List<Comment>) request.getAttribute("comments");
-    List<OC> artworkOCs = null;
-    BufferedImage img = null;
 
-    artworkOCs = a.getArtworkOcsById().stream().map(ArtworkOcs::getOriginalCharacterByOriginalCharacterId).collect(Collectors.toList());
+    List<Artwork> ocArtworks = oc.getArtworkOcsById().stream().map(ArtworkOcs::getArtworkByArtworkId).collect(Collectors.toList());
 
-    // Compare by OC's name
-    Collections.sort(artworkOCs, new Comparator<OC>() {
+    // Compare by Artwork's name
+    Collections.sort(ocArtworks, new Comparator<Artwork>() {
         @Override
-        public int compare(OC o1, OC o2) {
-            return o1.getName().compareTo(o2.getName());
+        public int compare(Artwork a1, Artwork a2) {
+            return a1.getTitle().compareTo(a2.getTitle());
         }
     });
 
-    img = a.getImg() == null ? null : Images.toImage(a.getImg());
+    BufferedImage img = oc.getImg() == null ? null : Images.toImage(oc.getImg());
 %>
 <jsp:include page="../header.jsp"></jsp:include>
 
@@ -57,14 +54,14 @@
     <div class="row mt-5 justify-content-center px-2 g-7 gy-4">
 
         <div class="d-flex justify-content-center py-2 bg-light shadow-lg my-0 rounded">
-            <h1 class="fw-bold"><%= a.getTitle() %>
+            <h1 class="fw-bold"><%= oc.getName() %>
             </h1>
         </div>
 
         <!--IMG-->
         <div class="col-md-offset-2 <%= img == null || ((double) img.getHeight() / (double) img.getWidth() >= 0.8) ? "col-sm-4" : "col-sm-8" %>">
             <label class="bg-light p-2 mt-2 shadow-lg rounded">
-                <img src="<%= img != null ? "data:image/jpg;base64, " + Base64.getEncoder().encodeToString(a.getImg()) : "images/upload.svg" %>"
+                <img src="<%= img != null ? "data:image/jpg;base64, " + Base64.getEncoder().encodeToString(oc.getImg()) : "images/upload.svg" %>"
                      class="img-fluid mx-auto d-block post-display-horizontal" id="img">
             </label>
         </div>
@@ -72,29 +69,29 @@
         <!--FORM FIELDS-->
         <div class="col-sm-8 justify-content-center">
             <%
-                if (Autentication.isOwner(request, a) || (a.getDescription() != null && !a.getDescription().isEmpty()) || (artworkOCs != null && !artworkOCs.isEmpty())) {
+                if (Autentication.isOwner(request, oc) || (oc.getDescription() != null && !oc.getDescription().isEmpty()) || (ocArtworks != null && !ocArtworks.isEmpty())) {
             %>
             <div class="mt-2 p-4 w-100 bg-light shadow-lg rounded">
                 <%
-                    if (a.getDescription() != null && !a.getDescription().isEmpty()) {
+                    if (oc.getDescription() != null && !oc.getDescription().isEmpty()) {
                 %>
                 <label class="form-label fw-bold">Description</label>
-                <p class="text-dark"><%= a.getDescription() %>
+                <p class="text-dark"><%= oc.getDescription() %>
                 </p>
                 <%
                     }
                 %>
 
                 <%
-                    if (artworkOCs != null && !artworkOCs.isEmpty()) {
+                    if (ocArtworks != null && !ocArtworks.isEmpty()) {
                 %>
-                <label class="form-label fw-bold">Characters</label>
+                <label class="form-label fw-bold">Appeareance in artworks</label>
                 <ul class="list-group bg-light">
                     <%
-                        for (OC oc : artworkOCs) {
+                        for (Artwork a : ocArtworks) {
                     %>
-                    <li class="list-group-item"><a href="characters-display?id=<%= oc.getId() %>"
-                                                   class="text-primary fw-bold undecorated"><%=oc.getName()%>
+                    <li class="list-group-item"><a href="artworks-display?id=<%= a.getId() %>"
+                                                   class="text-primary fw-bold undecorated"><%=a.getTitle()%>
                     </a></li>
 
                     <%
@@ -106,10 +103,10 @@
                 %>
 
                 <%
-                    if (Autentication.isOwner(request, a)) {
+                    if (Autentication.isOwner(request, oc)) {
                 %>
-                <div class="row justify-content-center <%= (a.getDescription() != null && !a.getDescription().isEmpty()) || (artworkOCs != null && !artworkOCs.isEmpty()) ? "mt-lg-5" : "" %>">
-                    <a href="artworks-edit?id=<%=a.getId()%>"
+                <div class="row justify-content-center <%= (oc.getDescription() != null && !oc.getDescription().isEmpty()) || (ocArtworks != null && !ocArtworks.isEmpty()) ? "mt-lg-5" : "" %>">
+                    <a href="characters-edit?id=<%=oc.getId()%>"
                        class="btn btn-info text-light w-50 mx-3 fw-bold">Edit</a>
                 </div>
 
@@ -146,9 +143,9 @@
                     }
                 %>
 
-                <form action="artworks-comment" method="POST" class="col-sm-8 <%= comments.isEmpty() ? "" : "mt-lg-5" %>">
+                <form action="characters-comment" method="POST" class="col-sm-8 <%= comments.isEmpty() ? "" : "mt-lg-5" %>">
                     <input type="text" name="id"
-                           value="<%= a.getId() %>"
+                           value="<%= oc.getId() %>"
                            hidden>
                     <input type="text" name="user-id"
                            value="<%= Autentication.isLogged(request) ? Autentication.getLoggedUser(request).getId() : "" %>"
