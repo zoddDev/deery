@@ -31,7 +31,7 @@ a.link-active {
   object-fit: cover !important;
   width: 400px !important;
   object-position: center !important;
-  height: 400px !important;
+  height: 380px !important;
 
   transition-duration: 0.25s;
 }
