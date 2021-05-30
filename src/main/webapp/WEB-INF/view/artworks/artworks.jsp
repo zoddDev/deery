@@ -53,7 +53,6 @@
                     <div class="bg-light rounded p-2 text-center">
                         <a class="undecorated" href="artworks-display?id=<%= a.getId() %>">
                             <img src="data:image/jpg;base64, <%= Base64.getEncoder().encodeToString(a.getImg()) %>" class="img-fluid mx-auto d-block rounded thumb-post">
-                            <p class="lead fw-bold bg-light undecorated text-dark" style="font-size: 200%"><%= a.getTitle() %></p>
                         </a>
                     </div>
                 </div>
