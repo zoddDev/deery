@@ -104,6 +104,8 @@ public class ArtworksController {
         Artwork a = artworkRepository.getById(Integer.parseInt(id));
 
         a.getArtworkOcsById().forEach(aocs -> artworkOCsRepository.delete(aocs));
+        a.getCommentsById().forEach(c -> commentRepository.delete(c));
+
         artworkRepository.delete(a);
 
         return "redirect:artworks";

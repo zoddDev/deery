@@ -121,6 +121,7 @@ public class CharactersController {
         OC oc = ocRepository.getById(Integer.parseInt(id));
 
         oc.getArtworkOcsById().forEach(aocs -> artworkOCsRepository.delete(aocs));
+        oc.getCommentsById().forEach(c -> commentRepository.delete(c));
         ocRepository.delete(oc);
 
         return "redirect:characters";
