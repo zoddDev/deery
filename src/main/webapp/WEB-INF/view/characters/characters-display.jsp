@@ -105,7 +105,7 @@
                 <%
                     if (Autentication.isOwner(request, oc)) {
                 %>
-                <div class="row justify-content-center <%= (oc.getDescription() != null && !oc.getDescription().isEmpty()) || (ocArtworks != null && !ocArtworks.isEmpty()) ? "mt-lg-5" : "" %>">
+                <div class="row justify-content-center <%= (oc.getDescription() != null && !oc.getDescription().isEmpty()) || (ocArtworks != null && !ocArtworks.isEmpty()) ? "mt-5" : "" %>">
                     <a href="characters-edit?id=<%=oc.getId()%>"
                        class="btn btn-info text-light w-50 mx-3 fw-bold">Edit</a>
                 </div>

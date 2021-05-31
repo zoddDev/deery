@@ -29,10 +29,10 @@ a.link-active {
 
 .thumb-post {
   object-fit: cover !important;
-  width: 400px !important;
+  min-width: 300px !important;
   object-position: center !important;
-  height: 380px !important;
-
+  min-height: 280px !important;
+  width: 100%;
   transition-duration: 0.25s;
 }
 

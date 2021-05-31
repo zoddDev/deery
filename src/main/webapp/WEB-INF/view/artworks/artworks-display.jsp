@@ -108,7 +108,7 @@
                 <%
                     if (Autentication.isOwner(request, a)) {
                 %>
-                <div class="row justify-content-center <%= (a.getDescription() != null && !a.getDescription().isEmpty()) || (artworkOCs != null && !artworkOCs.isEmpty()) ? "mt-lg-5" : "" %>">
+                <div class="row justify-content-center <%= (a.getDescription() != null && !a.getDescription().isEmpty()) || (artworkOCs != null && !artworkOCs.isEmpty()) ? "mt-5" : "" %>">
                     <a href="artworks-edit?id=<%=a.getId()%>"
                        class="btn btn-info text-light w-50 mx-3 fw-bold">Edit</a>
                 </div>

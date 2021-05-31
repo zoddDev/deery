@@ -50,9 +50,9 @@
 
             <div class="col-md-6 col-lg-4 mb-5 post">
                 <div class="p-3">
-                    <div class="bg-light rounded p-2 text-center">
+                    <div class="bg-light rounded p-2 text-center thumb-post">
                         <a class="undecorated" href="artworks-display?id=<%= a.getId() %>">
-                            <img src="data:image/jpg;base64, <%= Base64.getEncoder().encodeToString(a.getImg()) %>" class="img-fluid mx-auto d-block rounded thumb-post">
+                            <img src="data:image/jpg;base64, <%= Base64.getEncoder().encodeToString(a.getImg()) %>" class="img-fluid mx-auto d-block rounded">
                         </a>
                     </div>
                 </div>
