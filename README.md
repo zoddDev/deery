@@ -14,7 +14,7 @@ Its name comes from the artist for whom the project was started: [Deery](https:/
 ## Original Characters Gallery 🌸
 ![alt text](screenshots/deeryx_ocs.png)
 
-## Visit artworks where OCs appear 🔗
+## See the artworks where a specific character appear 🔗
 ![alt text](screenshots/deeryx_oc.png)
 
 
