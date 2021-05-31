@@ -25,16 +25,19 @@ Its name comes from the artist for whom the project was started: [Deery](https:/
 # [Development](http://deeryx.herokuapp.com)
 
 ## Colorscheme
-Based in [Nord theme](https://www.nordtheme.com/) by [Arctic Ice Studio](https://github.com/arcticicestudio)
+Based in [Nord theme](https://www.nordtheme.com/) by [Arctic Ice Studio](https://github.com/arcticicestudio).
+
+## Styling
+Using [Bootstrap v5.0](https://getbootstrap.com/docs/5.0/getting-started/introduction/).
 
 ## Framework
-Developed using [Spring Boot](https://spring.io/projects/spring-boot) JPA + [Hibernate](https://hibernate.org/)
+Developed using [Spring Boot](https://spring.io/projects/spring-boot) JPA + [Hibernate](https://hibernate.org/).
 
 ## Data Persistency
-[PostgreSQL](https://www.postgresql.org/) has been used for data persistency 
+[PostgreSQL](https://www.postgresql.org/) has been used for data persistency.
 
 ## Deployed
-Using [Heroku](heroku.com)
+Using [Heroku](heroku.com).
 
 ## Current state: WIP
 The project is NOT finished, some functionalities still need to be implemented.
