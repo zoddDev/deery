@@ -1,6 +1,6 @@
 # [Deery](http://deeryx.herokuapp.com)
 
-Deery is a web application, that serves as an artworks gallery or portfolio for a specific person. It grants the owner complete CRUD for their Artworks and Characters. 
+Deery is a web application, that serves as an artworks gallery or portfolio for a specific artist. It grants the owner a complete CRUD for their Artworks and Characters. 
 
 Its name comes from the artist for whom the project was started: [Deery](https://www.instagram.com/_deeryx/) **(who owns all the Artworks and Characters that appear in the following screenshots)**.
 
