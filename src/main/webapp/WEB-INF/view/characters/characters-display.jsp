@@ -31,7 +31,7 @@
 </head>
 <body class="bg-nord-blurred">
 <%
-    request.setAttribute("currentpage", "artworks");
+    request.setAttribute("currentpage", "characters");
 
     OC oc = (OC) request.getAttribute("oc");
     List<Comment> comments = (List<Comment>) request.getAttribute("comments");
