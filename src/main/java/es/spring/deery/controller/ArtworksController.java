@@ -128,6 +128,17 @@ public class ArtworksController {
         if (!edit)
             a.setDate(new Date(new java.util.Date().getTime()));
 
+        if (!edit)
+            a.setId(null);
+
+        if (file != null && !file.isEmpty()) {
+            try {
+                a.setImg(file.getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         if (edit) {
             for (ArtworkOcs artworkOcs : a.getArtworkOcsById()) {
                 artworkOCsRepository.delete(artworkOcs);
@@ -136,6 +147,9 @@ public class ArtworksController {
 
         a.setArtworkOcsById(new LinkedList<>());
         if (ocsInArtwork != null && !ocsInArtwork.isEmpty()) {
+            if (!edit)
+                artworkRepository.save(a);
+
             for (String ocId : ocsInArtwork) {
                 ArtworkOcs artworkOcs = new ArtworkOcs();
                 artworkOcs.setArtworkByArtworkId(a);
@@ -147,17 +161,6 @@ public class ArtworksController {
 
                 artworkOCsRepository.save(artworkOcs);
                 a.getArtworkOcsById().add(artworkOcs);
-            }
-        }
-
-        if (!edit)
-            a.setId(null);
-
-        if (file != null && !file.isEmpty()) {
-            try {
-                a.setImg(file.getBytes());
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         }
 
