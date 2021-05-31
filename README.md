@@ -15,7 +15,7 @@ Its name comes from the artist for whom the project was started: [Deery](https:/
 ![alt text](screenshots/deeryx_ocs.png)
 
 ## Visit artworks where OCs appear 🔗
-![alt text](screenshots/deeryx_character-display.png)
+![alt text](screenshots/deeryx_oc.png)
 
 
 ## Sign Up & Sign In 👤
