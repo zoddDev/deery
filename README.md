@@ -33,5 +33,8 @@ Developed using [Spring Boot](https://spring.io/projects/spring-boot) JPA + [Hib
 ## Data Persistency
 [PostgreSQL](https://www.postgresql.org/) has been used for data persistency 
 
+## Deployed
+Using [Heroku](heroku.com)
+
 ## Current state: WIP
 The project is NOT finished, some functionalities still need to be implemented.
